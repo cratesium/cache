@@ -19,6 +19,14 @@
 -->
 <configuration scan="true" scanPeriod="30 seconds">
 
+    <!--
+      IMPORTANT: Include Spring Boot's defaults FIRST.
+      This registers the %clr (colour) and %wEx (whitespace exception) converters
+      that Spring Boot adds on top of vanilla Logback.  Without this include,
+      Logback throws "There is no conversion class registered for [clr]".
+    -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
     <!-- ── Pull values from application.properties ───────────────────────── -->
     <springProperty scope="context" name="appName"  source="spring.application.name" defaultValue="app"/>
     <springProperty scope="context" name="logLevel" source="logging.level.root"      defaultValue="INFO"/>
